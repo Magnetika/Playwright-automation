@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test';
 
-test.describe('Home', () => {
-    test('Open HomePage and verified title', async ({page}) => {
+test.describe('About', () => {
+    test('Open AboutPage and verified title', async ({page}) => {
         //Open URL
         await page.goto('https://practice.sdetunicorns.com/about/');
         //Verify title
