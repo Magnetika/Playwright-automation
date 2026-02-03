@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-pw-describe('Home', () => {
+test.describe('Home', () => {
     test('Open HomePage and verified title', async ({page}) => {
         //Open URL
         await page.goto('https://practice.sdetunicorns.com/');
