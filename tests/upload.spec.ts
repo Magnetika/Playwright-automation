@@ -3,12 +3,11 @@ import HomePage from '../pages/home.page';
 const path = require('path');
 
 test.describe('Upload file', () => {
-    let homePage;
+    let homePage: HomePage;
     test('should upload a test file', async ({ page }) => {
         homePage = new HomePage(page);
 
         //Open URL
-
         await page.goto('https://practice.sdetunicorns.com/cart/');
 
         //provide test file path

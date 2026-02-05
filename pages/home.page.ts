@@ -1,12 +1,14 @@
+import {Page, Locator} from '@playwright/test';
+
 class HomePage {
-    page: any;
-    getStartedButton: any;
-    headingText: any;
-    homeLink: any;
-    searchIcon: any;
-    navLinks: any;
+    page: Page;
+    getStartedButton: Locator;
+    headingText: Locator;
+    homeLink: Locator;
+    searchIcon: Locator;
+    navLinks: Locator;
     
-    constructor(page: any) {
+    constructor(page: Page) {
         this.page = page;
         this.getStartedButton = page.locator('#get-started');
         this.headingText = page.locator('text=Think different. Make different.');
@@ -14,7 +16,13 @@ class HomePage {
         this.searchIcon = page.locator("//div[@class='zak-header-actions zak-header-actions--desktop']//a[@class='zak-header-search__toggle']");
         this.navLinks = page.locator('#zak-primary-menu li[id*=menu-item]');
     }
+        async navigate() {
+        await this.page.goto('https://practice.sdetunicorns.com/');
+    }
 
+    async getNavLinksText() {
+        return await this.navLinks.allTextContents();
+    }
 }
 
 export default HomePage;

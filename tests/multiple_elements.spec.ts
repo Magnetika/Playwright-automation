@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test';
 import HomePage from '../pages/home.page';
 
 test.describe('Home', () => {
-    let homePage;
+    let homePage: HomePage;
     test('Verify the text for all links', async ({page}) => {
         homePage = new HomePage(page);
         const expectedLinks = [
@@ -15,12 +15,9 @@ test.describe('Home', () => {
         ];
         
         //Open URL
-        await page.goto('https://practice.sdetunicorns.com/');
-
-        //Find the nav links
-        const navLinks = page.locator('#zak-primary-menu li[id*=menu-item]');
+        await homePage.navigate();
 
         //Verify nav links text
-        await expect(await navLinks.allTextContents()).toEqual(expectedLinks);
+        await expect(await homePage.getNavLinksText()).toEqual(expectedLinks);
     });
 });
