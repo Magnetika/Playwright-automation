@@ -1,7 +1,10 @@
 import {test, expect} from '@playwright/test';
+import HomePage from '../pages/home.page';
 
 test.describe('Home', () => {
+    let homePage;
     test('Verify the text for all links', async ({page}) => {
+        homePage = new HomePage(page);
         const expectedLinks = [
             "Home",
             "About",

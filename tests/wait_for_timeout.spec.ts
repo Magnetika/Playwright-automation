@@ -1,9 +1,11 @@
 import { test, expect} from '@playwright/test';
+import HomePage from '../pages/home.page';
 const path = require('path');
 
 test.describe('Upload file', () => {
-
+    let homePage;
     test('should upload a test file', async ({ page }) => {
+        homePage = new HomePage(page);
 
         //Open URL
 
