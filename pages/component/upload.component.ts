@@ -1,7 +1,7 @@
 import {Page, Locator} from '@playwright/test';
 
 class UploadComponent {
-    page: Page;
+    private page: Page;
     uploadInput: string;
     submitButton: Locator;
     successText: Locator;
@@ -12,6 +12,12 @@ class UploadComponent {
         this.uploadInput = 'input#upfile_1';
         this.submitButton = page.locator('#upload_1');
         this.successText = page.locator('#wfu_messageblock_header_1_label_1');
+    }
+
+    async uploadFile(filePath: string) {
+        await this.page.setInputFiles(this.uploadInput, filePath);
+        await this.submitButton.click();
+
     }
 }
 

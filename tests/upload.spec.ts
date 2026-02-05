@@ -1,11 +1,11 @@
 import { test, expect} from '@playwright/test';
-import HomePage from '../pages/home.page';
+import CartPage from '../pages/cart.page';
 const path = require('path');
 
 test.describe('Upload file', () => {
-    let homePage: HomePage;
+    let cartPage: CartPage;
     test('should upload a test file', async ({ page }) => {
-        homePage = new HomePage(page);
+        cartPage = new CartPage(page);
 
         //Open URL
         await page.goto('https://practice.sdetunicorns.com/cart/');
@@ -15,16 +15,11 @@ test.describe('Upload file', () => {
         const filePath = path.join(__dirname, '../data/pikachu.png');
 
         //upload test file
-
-        await page.setInputFiles('input#upfile_1', filePath);
-
-        //click the submit button
-
-        await page.locator('#upload_1').click();
-
+        await cartPage.UploadComponent().uploadFile(filePath);
+      
         //assertion
 
-        await expect(page.locator('#wfu_messageblock_header_1_label_1'))
+        await expect(cartPage.UploadComponent().successText)
             .toContainText('uploaded successfully');
 
     })
