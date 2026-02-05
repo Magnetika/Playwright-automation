@@ -3,11 +3,13 @@ import HomePage from '../pages/home.page';
 
 test.describe('Home', () => {
     let homePage: HomePage;
-    test('Open HomePage and verified title', async ({page}) => {
+    
+    test.beforeEach(async ({page}) => {
         homePage = new HomePage(page);
-        //Open URL
-        //await page.goto('https://practice.sdetunicorns.com/');
         await homePage.navigate();
+    });
+
+    test('Open HomePage and verified title', async ({page}) => {
         //Verify title
         await expect(page).toHaveTitle('Practice E-Commerce Site – SDET Unicorns');
     });
